@@ -1,0 +1,25 @@
+config:
+  target: 'http://127.0.0.1:3000'
+  processor: './stress.js'
+  phases:
+    - duration: 30
+      arrivalRate: 20
+scenarios:
+  - name: 'POST test'
+    flow:
+    - loop:
+      - function: 'randomData'
+      - post:
+          url: '/stress/restaurant/'
+          json:
+            id: '{{ id }}'
+            title: '{{ title }}'
+            review: '{{ review }}'
+            reviewStars: '{{ reviewStars }}'
+            numOfReviews: '{{ numOfReveiws }}'
+            pricePerPersonLow: '{{ pricePerPersonLow }}'
+            pricePerPersonHigh: '{{ pricePerPersonHigh }}'
+            category: '{{ category }}'
+            topTags: '{{ topTags }}'
+            description: '{{ description }}'
+      count: 20
